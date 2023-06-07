@@ -1,0 +1,18 @@
+# IntelliJ IDEA
+.idea/
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs and reports
+logs/
+target/
+test-output/
+
+# Libraries
+lib/
+/test-reports/
+/APPS/
