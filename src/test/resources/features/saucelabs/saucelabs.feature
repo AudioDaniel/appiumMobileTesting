@@ -20,16 +20,26 @@ Feature: Saucelabs testing
     #Then he should be redirected to the <section> page
 
     Examples:
-      | section         |
-      | Catalog         |
-      | Webview         |
+      | section |
+      | Catalog |
+      | Webview |
       #| QR Code Scanner |
       #| Geo Location    |
       #| Drawing         |
-      | About           |
+      | About   |
       #| Reset App State |
       #| FingerPrint     |
       #| Log In          |
       #| Log Out         |
       #| Api Calls       |
       #| Sauce Bot Video |
+
+  @Shopping
+  Scenario Outline: Adding items to the cart
+    When the user clicks on the product <item>
+    And the user adds the item to the cart <times> times
+    Then the item counter should match <times>
+
+    Examples:
+      | item                | times |
+      | Sauce Labs Backpack | 4     |

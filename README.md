@@ -1,4 +1,4 @@
-# Appium Confluedent Test
+# Appium Mobile Testing
 Se trata de un proyecto de automatización de pruebas para aplicaciones móviles usando Appium con Java.
 
 ## Requisitos previos
