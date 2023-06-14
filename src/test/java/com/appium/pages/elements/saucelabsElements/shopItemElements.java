@@ -7,4 +7,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 public class shopItemElements extends mobilePageObject {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"counter amount\"]/android.widget.TextView")
     public MobileElement counterAmount;
+
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"cart badge\"]/android.widget.TextView")
+    public MobileElement shoppingCartBadge;
+
+    @AndroidFindBy(accessibility = "Add To Cart button")
+    public MobileElement addToCartButton;
 }

@@ -10,11 +10,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
-import static com.appium.pages.baseAppium.driver;
-import static com.appium.pages.baseAppium.getDriver;
+import static com.appium.pages.baseAppium.*;
 
 public class mobilePageObject {
 
@@ -26,9 +27,46 @@ public class mobilePageObject {
 
     public static MobileElement findElementByXpath(String xpath) {
 
-        WebElement element = driver.findElement(By.xpath(xpath));
-        return (MobileElement) element;
+        try {
+
+            int attempts = 0;
+
+            boolean failed;
+
+            do {
+
+                try {
+
+                    MobileElement element = (MobileElement) driver.findElement(By.xpath(xpath));
+
+                    failed = false;
+
+                    return element;
+
+                } catch (Exception e) {
+
+                    attempts++;
+
+                    failed = true;
+
+                }
+
+            } while (attempts < 3 && failed);
+
+            Assert.fail("Fail to find element: " + xpath);
+
+            return null;
+
+        } catch (Exception ignored) {
+
+            Assert.fail("Fail to find element: " + xpath);
+
+            return null;
+
+        }
+
     }
+
     public static MobileElement findElement(MobileElement element) {
         try {
             int attempts = 0;
@@ -68,10 +106,14 @@ public class mobilePageObject {
 
     public static void setText(MobileElement element, String text) {
         try {
-            // element.clear();
-            // element.sendKeys(text);
-            findElement(element).clear();
-            findElement(element).sendKeys(text);
+            //wait.until(ExpectedConditions.elementToBeSelected())
+
+            // TODO EXPLICAR TEORIA SOBRE QUE YA HAY UN ELEMENTO EN LA PÁGINA
+            element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.clear();
+            element.sendKeys(text);
+            //findElement(element).clear();
+            //findElement(element).sendKeys(text);
         } catch (Exception e) {
             Assert.fail("Fail to set text on element:" + element);
         }

@@ -3,6 +3,7 @@ package com.appium.pages.saucelabsScreens;
 import com.appium.pages.elements.saucelabsElements.shopElements;
 import com.appium.pages.elements.saucelabsElements.homeElements;
 import com.appium.pages.elements.saucelabsElements.shopItemElements;
+import com.appium.scripts.commons;
 
 
 public class shopScreen extends shopElements {
@@ -35,4 +36,11 @@ public class shopScreen extends shopElements {
         click(shopElements.plusButton);
     }
 
+    public static void proceedToCheckout() {
+        click(shopElements.proceedToCheckoutButton);
+    }
+
+    public static void clickItem2(int pos) {
+        click(commons.findElementsByXpath(shopElements.xpathAllItems).get(pos));
+    }
 }

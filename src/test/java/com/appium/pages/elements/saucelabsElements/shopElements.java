@@ -8,6 +8,10 @@ public class shopElements extends mobilePageObject {
 
     // GENERICOS TODO MOVER A UTILS
 
+
+
+    public String xpathAllItems = "(//android.view.ViewGroup[@content-desc=\"store item\"])";
+
     public String xpathItemByText = "(//android.widget.TextView[@text=\"%s\"])[1]";
 
 
@@ -18,5 +22,7 @@ public class shopElements extends mobilePageObject {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"counter plus button\"]")
     public MobileElement plusButton;
 
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Proceed To Checkout button\"]")
+    public MobileElement proceedToCheckoutButton;
 
 }

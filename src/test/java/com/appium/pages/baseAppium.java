@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -12,7 +13,10 @@ import java.net.URL;
 
 public class baseAppium {
 
+
+
     public static AppiumDriver driver;
+    public static WebDriverWait wait;
 
     public void init(String propertieFile) throws MalformedURLException {
         switch (System.getProperty("deviceType")){
@@ -49,12 +53,20 @@ public class baseAppium {
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
         capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
 
+        capabilities.setCapability("disableWindowAnimation", true);
+
+
+        //capabilities.setCapability("appium:avd", "DeviceTest");
+        // TODO REVISAR ^^^^^^^^^^^^^^^^^^^^^^^^^^ mirar avdReadyTimeout skipDeviceInicialization
+
         File app = new File(loadproperty.loadProperties(propertiesFile).getProperty("apkDir"), loadproperty.loadProperties(propertiesFile).getProperty("apkName"));
         capabilities.setCapability("app", app.getAbsolutePath());
 
         //Init driver
         URL url = new URL("http://localhost:4723/wd/hub");
+
         driver = new AndroidDriver(url, capabilities);
+        wait = new WebDriverWait(driver,3);
         System.out.println("Application stated....");
         System.out.println("Driver(BaseAppium): " + driver);
     }

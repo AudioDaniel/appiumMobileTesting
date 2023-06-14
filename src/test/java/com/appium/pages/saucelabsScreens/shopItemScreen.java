@@ -7,8 +7,16 @@ import com.appium.stepsDefinitions.mobilePageObject;
 public class shopItemScreen extends shopElements {
     public static shopItemElements shopItemElements = new shopItemElements();
 
-    public static void verifyCounterNumber(int times) {
-        Assert.assertTrue("The number doesn't match the specified value " + times + "\nactual value: " + mobilePageObject.getTextElement(shopItemElements.counterAmount),
-                (times == Integer.parseInt(mobilePageObject.getTextElement(shopItemElements.counterAmount))));
+    public static int getCounterNumber() {
+
+    return Integer.parseInt(mobilePageObject.getTextElement(shopItemElements.counterAmount));
+    }
+
+    public static void clickShoppingCart() {
+        click(shopItemElements.shoppingCartBadge);
+    }
+
+    public static void clickAddToCart() {
+        click(shopItemElements.addToCartButton);
     }
 }

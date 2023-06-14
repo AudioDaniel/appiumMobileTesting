@@ -1,13 +1,13 @@
 package com.appium.pages.saucelabsScreens;
 
-import com.appium.pages.elements.saucelabsElements.aboutElements;
+import com.appium.pages.elements.saucelabsElements.AboutElements;
 import org.junit.Assert;
 
 import java.util.Objects;
 
-public class aboutScreen extends aboutElements {
+public class aboutScreen extends AboutElements {
 
-    public static aboutElements aboutElements = new aboutElements();
+    public static AboutElements aboutElements = new AboutElements();
     public static void verifyCurrentVersion(String currentVersion) {
         Assert.assertTrue("Element not present",isPresent(aboutElements.versionText));
         String currentText = aboutElements.versionText.getText();

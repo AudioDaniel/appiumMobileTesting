@@ -1,14 +1,17 @@
 package com.appium.scripts;
 
 import com.appium.pages.baseAppium;
+import io.appium.java_client.MobileElement;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 
@@ -40,6 +43,54 @@ public class commons extends baseAppium {
             return null;
         }
     }
+    // TODO BORRAR EL DE mobilePage!!!!!!!!!!!!!!!!!!!!!
+// FIND ELEMENT ----------------------------
+    public static MobileElement findElementByXpath(String xpath) {
+        try {
+            int attempts = 0;
+            boolean failed;
+            do {
+                try {
+                    //MobileElement element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+                    MobileElement element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+                    failed = false;
+                    return element;
+                } catch (Exception e) {
+                    attempts++;
+                    System.out.println("FAILED TO FAIL ELEMENT ATTEMPT: " + attempts );
+                    //Thread.sleep(1000);
+                    failed = true;
+                }
+            } while (attempts < 3 && failed);
+            Assert.fail("Fail to find element: " + xpath);
+            return null;
+        } catch (Exception ignored) {
+            Assert.fail("Fail to find element: " + xpath);
+            return null;
+        }
+    }
+    public static List<MobileElement> findElementsByXpath(String xpath) {
+        try {
+            int attempts = 0;
+            boolean failed;
+            do {
+                try {
+                    List<MobileElement> elements = (List<MobileElement>) driver.findElements(By.xpath(xpath));
+                    failed = false;
+                    return elements;
+                } catch (Exception e) {
+                    attempts++;
+                    failed = true;
+                }
+            } while (attempts < 3 && failed);
+            Assert.fail("Fail to find element: " + xpath);
+            return null;
+        } catch (Exception ignored) {
+            Assert.fail("Fail to find element: " + xpath);
+            return null;
+        }
+    }
+
 
     //CLICK
     public static void click(String ID) {
