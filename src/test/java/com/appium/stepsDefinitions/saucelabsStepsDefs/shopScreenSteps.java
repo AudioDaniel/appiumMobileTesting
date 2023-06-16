@@ -113,4 +113,10 @@ public class shopScreenSteps {
     public void iClickAllItems() {
         shopScreen.clickItem2(0);
     }
+
+    @Then("^zoom on the product (.*)$")
+    public void zoomOnTheProduct(String item) {
+        shopItemScreen.zoomItem(item);
+
+    }
 }

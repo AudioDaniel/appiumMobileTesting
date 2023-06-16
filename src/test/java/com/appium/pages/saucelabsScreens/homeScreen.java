@@ -14,4 +14,13 @@ public class homeScreen extends homeElements {
     public static void swipeScreen() {
         commons.horizontalSwipeByPercentage(0.9,0.1,0.5);
     }
+
+    public static void pinchscreen() {
+        try{
+            commons.zoomOnElement(homeElements.drawingBoard);}
+        catch (InterruptedException e){
+            System.out.println(e);
+        }
+
+    }
 }

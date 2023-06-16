@@ -17,11 +17,12 @@ Feature: Saucelabs testing
   Scenario: XPATH TEST
     When I click x item
 
-@Swipetest
+  @Swipetest
   Scenario: : Swiping page
-  When the user clicks burger button
-  Then the user swipes the screen
-  When the user clicks on the product Sauce Labs Backpack
+    When the user clicks burger button
+    When the user clicks on the section Drawing
+    Then the user swipes the screen
+    Then pinch the screen
   
   @NavigateToSection
   Scenario Outline: Navigating through sections

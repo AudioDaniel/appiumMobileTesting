@@ -12,6 +12,8 @@ public class homeElements extends mobilePageObject {
     // MobileElements
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"menu item about\"]")
     public MobileElement aboutButton;
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"drawing screen\"]/android.view.ViewGroup[2]/android.view.ViewGroup/android.webkit.WebView")
+    public MobileElement drawingBoard;
 
     @AndroidFindBy(accessibility = "open menu")
     public MobileElement burgerButton;

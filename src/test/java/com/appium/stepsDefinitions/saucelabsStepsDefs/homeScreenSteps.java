@@ -17,4 +17,9 @@ public class homeScreenSteps {
         Thread.sleep(3000);
         homeScreen.swipeScreen();
     }
+
+    @Then("pinch the screen")
+    public void pinchTheScreen() {
+        homeScreen.pinchscreen();
+    }
 }

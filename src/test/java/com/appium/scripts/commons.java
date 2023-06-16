@@ -7,6 +7,7 @@ import static java.time.Duration.ofMillis;
 
 import com.appium.pages.baseAppium;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Assert;
@@ -21,6 +22,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+import io.appium.java_client.touch.offset.PointOption;
+
 
 
 
@@ -161,6 +164,37 @@ public class commons extends baseAppium {
 
 
     // ZOOM
+    public void zoomOnElement(MobileElement element) throws InterruptedException {
+
+        WebElement newElement = (WebElement) element;
+
+        int x1= element.getLocation().getX();
+        int y1= element.getLocation().getY();
+
+        final int x=newElement.getLocation().getX()+newElement.getSize().getWidth()/2;
+        final int y= newElement.getLocation().getY()+newElement.getSize().getHeight()/2;
+
+        System.out.println ("Now zooming");
+        TouchAction finger1= new TouchAction(driver);
+        finger1.press(PointOption.point(x, y - 10)).moveTo(PointOption.point(x, y - 100)).release().perform();
+
+        TouchAction finger2 = new TouchAction(driver);
+        finger2.press(PointOption.point(x, y + 10)).moveTo(PointOption.point(x, y + 100)).release().perform();
+
+        finger1.longPress(PointOption.point(x1, y1)).moveTo(PointOption.point(x1+50, y1+50));
+        finger2.longPress(PointOption.point(x1, y1)).moveTo(PointOption.point(x1-50, y1-50));
+
+        MultiTouchAction myAction= new MultiTouchAction(driver);
+        myAction.add(finger1).add(finger2);
+        myAction.perform();
+
+        System.out.println ("Zoom Done");
+        Thread.sleep(8000);
+    }
+
+
+
+
 
 
     // TODO BORRAR TODO MENOS ESTO

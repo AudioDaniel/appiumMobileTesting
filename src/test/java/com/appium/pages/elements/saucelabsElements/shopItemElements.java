@@ -11,6 +11,9 @@ public class shopItemElements extends mobilePageObject {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"cart badge\"]/android.widget.TextView")
     public MobileElement shoppingCartBadge;
 
+    @AndroidFindBy(xpath = "//android.widget.ScrollView[@content-desc=\"product screen\"]/android.view.ViewGroup")
+    public MobileElement currentItem;
+
     @AndroidFindBy(accessibility = "Add To Cart button")
     public MobileElement addToCartButton;
 }
