@@ -23,4 +23,16 @@ public class homeScreen extends homeElements {
         }
 
     }
+
+    public static void scrollToLinkedin() {
+        commons.scrollToXpath(homeElements.linkedinIconXpath);
+    }
+
+    public static void clickLinkedin() {
+        click(homeElements.linkedinIcon);
+    }
+
+    public static void scrollToIphone7() {
+        commons.scrollToXpath(homeElements.apiCallsIphone7Xpath);
+    }
 }

@@ -119,4 +119,21 @@ public class shopScreenSteps {
         shopItemScreen.zoomItem(item);
 
     }
+
+    @When("the user clicks sorting button")
+    public void theUserClicksSortingButton() {
+        shopScreen.clickSortButton();
+
+    }
+
+    @And("he selects price ascending")
+    public void heSelectsPriceAscending() {
+        shopScreen.selectPriceAscending();
+    }
+
+    @Then("the prices should be ordered in ascending price")
+    public void thePricesShouldBeOrderedInAscendingPrice() throws InterruptedException {
+        Thread.sleep(3000);
+        Assert.assertTrue("Prices not ordered",shopScreen.assertOrderedAscPrices());
+    }
 }

@@ -54,6 +54,14 @@ Feature: Saucelabs testing
     Examples:
       | item                | times |
       | Sauce Labs Backpack | 4     |
+  @Scroll
+    Scenario: Scrolling to linkedin
+    #When the user scrolls to linkedin icon
+    #Then I click linkedin icon
+    When the user clicks burger button
+    And the user clicks on the section Api Calls
+    Then the user scroll to Iphone7
+
 
   @SuccessfulShopping
   Scenario Outline: Checkout to the shop
@@ -88,4 +96,13 @@ Feature: Saucelabs testing
     Examples:
       | item                | times |
       | Sauce Labs Backpack | 4     |
+
+
+
+    @Order
+    Scenario: Sorting items
+      When the user clicks sorting button
+      And he selects price ascending
+      Then the prices should be ordered in ascending price
+
 
