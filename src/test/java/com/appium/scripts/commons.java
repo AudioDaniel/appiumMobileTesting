@@ -242,11 +242,12 @@ public class commons extends baseAppium {
     public void scrollToXpath(String xpath) {
         WebElement element = null;
         boolean elementFound = false;
-
-        while (!elementFound) {
+        int count = 0;
+        while (!elementFound && count < 25) {
             try {
                 element = driver.findElement(By.xpath(xpath));
                 elementFound = true;
+                count++;
             } catch (NoSuchElementException e) {
                 verticalSwipeByPercentages(0.8, 0.2, 0.5);
             }
