@@ -2,6 +2,7 @@ package com.appium.stepsDefinitions.saucelabsStepsDefs;
 
 import com.appium.pages.saucelabsScreens.LogInScreen;
 import com.appium.pages.saucelabsScreens.shopItemScreen;
+import com.appium.scripts.commons;
 import com.appium.stepsDefinitions.mobilePageObject;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -133,7 +134,22 @@ public class shopScreenSteps {
 
     @Then("the prices should be ordered in ascending price")
     public void thePricesShouldBeOrderedInAscendingPrice() throws InterruptedException {
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
         Assert.assertTrue("Prices not ordered",shopScreen.assertOrderedAscPrices());
+    }
+
+    @When("the user double taps backpack")
+    public void theUserDoubleTapsBackpack() {
+        shopScreen.doubleTapBackpack();
+    }
+
+    @And("he selects name ascending")
+    public void heSelectsNameAscending() {
+        shopScreen.selectNameAscending();
+    }
+
+    @Then("the names should be ordered in ascending name")
+    public void theNamesShouldBeOrderedInAscendingName() {
+        Assert.assertTrue("Names not ordered",shopScreen.assertOrderedAscNames());
     }
 }

@@ -23,7 +23,7 @@ Feature: Saucelabs testing
     When the user clicks on the section Drawing
     Then the user swipes the screen
     Then pinch the screen
-  
+
   @NavigateToSection
   Scenario Outline: Navigating through sections
     When the user clicks burger button
@@ -54,8 +54,9 @@ Feature: Saucelabs testing
     Examples:
       | item                | times |
       | Sauce Labs Backpack | 4     |
+
   @Scroll
-    Scenario: Scrolling to linkedin
+  Scenario: Scrolling to linkedin
     #When the user scrolls to linkedin icon
     #Then I click linkedin icon
     When the user clicks burger button
@@ -98,11 +99,21 @@ Feature: Saucelabs testing
       | Sauce Labs Backpack | 4     |
 
 
+  @Order
+  Scenario: Sorting items by ascending price
+    When the user clicks sorting button
+    And he selects price ascending
+    Then the prices should be ordered in ascending price
 
-    @Order
-    Scenario: Sorting items
-      When the user clicks sorting button
-      And he selects price ascending
-      Then the prices should be ordered in ascending price
+  @Order
+  Scenario: Sorting by ascending name
+    When the user clicks sorting button
+    And he selects name ascending
+    Then the names should be ordered in ascending name
+
+
+  @Testing
+  Scenario: Test
+    When the user double taps backpack
 
 

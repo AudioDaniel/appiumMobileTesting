@@ -16,6 +16,8 @@ public class shopElements extends mobilePageObject {
 
     public String xpathItemPrice = "(//android.widget.TextView[@content-desc=\"store item price\"])";
 
+    public String xpathItemName = "(//android.widget.TextView[@content-desc=\"store item text\"])";
+
 
     //SHOP ELEMENTS
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc='store item'])[1]/android.view.ViewGroup[1]/android.widget.ImageView")

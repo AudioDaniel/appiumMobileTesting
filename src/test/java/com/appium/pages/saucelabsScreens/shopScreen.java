@@ -65,4 +65,20 @@ public class shopScreen extends shopElements {
         return commons.isOrderedAscPrice(prices);
 
     }
+
+    public static void doubleTapBackpack() {
+        commons.longPress(shopElements.saucelabsBackpack);
+    }
+
+
+    public static void selectNameAscending() {
+        click(shopElements.sortNameAsc);
+    }
+
+    public static boolean assertOrderedAscNames() {
+        commons.scrollToXpath(shopElements.xpathItemName + "[6]");
+        List<MobileElement> names = commons.findElementsByXpath(shopElements.xpathItemName);
+        return commons.assertElementsInOrder(names);
+
+    }
 }

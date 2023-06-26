@@ -14,6 +14,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.touch.TouchActions;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -118,6 +121,24 @@ public class commons extends baseAppium {
             Assert.fail("Fail to click on element: " + ID);
         }
     }
+    // Long press
+    public static void longPress(MobileElement element){
+        TouchAction action = new TouchAction(driver);
+        Point location = element.getLocation();
+        new TouchAction(driver)
+                .press(PointOption.point(location.getX(),
+                        location.getY()))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3))).release().perform();
+    }
+
+    public static void doubleTap(MobileElement element){
+        int x = element.getLocation().getX();
+        int y = element.getLocation().getY();
+        TouchAction action = new TouchAction(driver);
+
+        action.tap(PointOption.point(x, y)).perform();
+        action.tap(PointOption.point(x, y)).perform();
+    }
 
     //SET TEXT
     public static void setText(String ID, String text) {
@@ -139,6 +160,21 @@ public class commons extends baseAppium {
         }
     }
     //ELEMENTS TEXT ORDER
+
+    public boolean assertElementsInOrder(List<MobileElement> elements) {
+        int size = elements.size();
+        for (int i = 0; i < size - 1; i++) {
+            String currentText = elements.get(i).getText();
+            String nextText = elements.get(i + 1).getText();
+
+            if (currentText.compareTo(nextText) > 0) {
+                return false;  // Elements are not in order
+            }
+        }
+        return true;  // Elements are in order
+    }
+
+    //ELEMENTS PRICE ORDER
     public static boolean isOrderedAscPrice(List<MobileElement> prices) {
         if (prices.isEmpty()) {
             return true; // Empty list is considered ordered
@@ -186,6 +222,7 @@ public class commons extends baseAppium {
     // SWIPE
     //Horizontal Swipe by percentages
     public void horizontalSwipeByPercentage(double startPercentage, double endPercentage, double anchorPercentage) {
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.height * anchorPercentage);
         int startPoint = (int) (size.width * startPercentage);
@@ -197,6 +234,7 @@ public class commons extends baseAppium {
                 .release().perform();
     }
     public void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.width * anchorPercentage);
         int startPoint = (int) (size.height * startPercentage);
@@ -249,7 +287,7 @@ public class commons extends baseAppium {
                 elementFound = true;
                 count++;
             } catch (NoSuchElementException e) {
-                verticalSwipeByPercentages(0.8, 0.2, 0.5);
+                verticalSwipeByPercentages(0.5, 0.3, 0.5);
             }
         }
     }
