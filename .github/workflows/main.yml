@@ -36,9 +36,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
           
       - name: install appium server
-        with: 
-          script: npm i -g appium@next
-
+        run: npm i -g appium@next
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
