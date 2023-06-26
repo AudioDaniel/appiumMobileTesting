@@ -34,6 +34,11 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
+          
+      - name: install appium server
+        with: 
+          script: npm i -g appium@next
+
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
