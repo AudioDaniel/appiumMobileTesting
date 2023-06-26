@@ -37,6 +37,9 @@ jobs:
           
       - name: install appium server
         run: npm i -g appium@next
+        
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -45,4 +48,4 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: ./mvn test
+          script: mvn test
