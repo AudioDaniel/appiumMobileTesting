@@ -4,6 +4,7 @@ Feature: Saucelabs testing
   Background:
     Given the user enter to application 'Saucelabs'
 
+  @Version
   Scenario Outline: Checking current version displayed
     When the user clicks burger button
     And the user clicks about button
