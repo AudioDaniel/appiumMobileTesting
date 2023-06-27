@@ -12,9 +12,13 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
-
-      - name: Gradle cache
-        uses: gradle/gradle-build-action@v2
+        
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: 'maven'
         
       - name: AVD cache
         uses: actions/cache@v3
@@ -38,8 +42,8 @@ jobs:
       - name: install appium server
         run: npm i -g appium@next
         
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+      - name : run appium server
+        run: appium -pa /wd/hub --session-override --use-plugins execute-driver
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -48,4 +52,4 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
-          script: mvn test
+          script: mvn test -Dcucumber.filter.tags="@Order" -Dplatform=android -DdeviceType=emulator
