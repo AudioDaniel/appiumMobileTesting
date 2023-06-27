@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        api-level: [21]
+        api-level: [24]
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
       #  run: appium driver list
         
       - name : run appium server
-        run: appium -pa /wd/hub --session-override --use-plugins execute-driver &
+        run: appium #-pa /wd/hub --session-override --use-plugins execute-driver &
         
       - name: Wait for Appium Server to start
         run: | 
