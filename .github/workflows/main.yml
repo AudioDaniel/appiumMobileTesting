@@ -42,7 +42,7 @@ jobs:
      
           
       - name: install appium server
-        run: npm i -g appium@next
+        run: npm i -g appium@1.22.3
         
       - name: install UiAutomator2
         run: appium driver install uiautomator2
