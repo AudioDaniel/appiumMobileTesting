@@ -39,8 +39,16 @@ jobs:
           disable-animations: false
           script: echo "Generated AVD snapshot for caching."
           
+     
+          
       - name: install appium server
         run: npm i -g appium@next
+        
+      - name: install UiAutomator2
+        run: appium driver install uiautomator2
+        
+      - name: check drivers
+        run: appium driver list
         
       - name : run appium server
         run: appium -pa /wd/hub --session-override --use-plugins execute-driver
