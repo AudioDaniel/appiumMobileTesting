@@ -59,6 +59,9 @@ jobs:
          #echo "Waiting for Appium Server to start..."
          #sleep 1
          #done
+         
+      - name: Wait 2 TEST
+        run: sleep 30
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
