@@ -114,7 +114,11 @@ Feature: Saucelabs testing
 
 
   @Testing
-  Scenario: Test
-    When the user double taps backpack
+  Scenario Outline: Adding items to the cart
+    When the user clicks on the product <item>
+
+    Examples:
+      | item                | times |
+      | Sauce Labs Backpack | 4     |
 
 
