@@ -55,7 +55,7 @@ jobs:
         run: appium driver list
              
       - name : run appium server
-        run: appium --base-path=/wd/hub --session-override --use-plugins relaxed-caps execute-driver &
+        run: appium --base-path=/wd/hub --session-override --use-plugins relaxed-caps,execute-driver &
         
       - name: Wait for Appium Server to start
         run: | 
