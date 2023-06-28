@@ -78,3 +78,6 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
           script: mvn test -Dcucumber.filter.tags="@Testing" -Dplatform=android -DdeviceType=emulator
+          
+      - name: check java version
+        run: java -version
