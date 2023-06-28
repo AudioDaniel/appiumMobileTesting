@@ -48,6 +48,9 @@ jobs:
       - name: install UiAutomator2
         run: appium driver install uiautomator2
         
+      - name : install appium plugin relaxed caps
+        run: appium plugin install relaxed-caps
+        
       - name: check drivers
         run: appium driver list
              
