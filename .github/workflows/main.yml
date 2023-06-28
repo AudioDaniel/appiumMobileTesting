@@ -49,12 +49,9 @@ jobs:
         
       - name: check drivers
         run: appium driver list
-        
-      - name: set appium path
-        run: appium --base-path=/wd/hub
-        
+             
       - name : run appium server
-        run: appium -pa /wd/hub --session-override --use-plugins execute-driver &
+        run: appium --base-path=/wd/hub --session-override --use-plugins execute-driver &
         
       - name: Wait for Appium Server to start
         run: | 
