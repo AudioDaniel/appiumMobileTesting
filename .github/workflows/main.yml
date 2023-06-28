@@ -66,6 +66,9 @@ jobs:
          
       #- name: Wait 2 TEST
         #run: sleep 30
+        
+      - name: check java version
+        run: java -version
 
       - name: start emulator
         uses: reactivecircus/android-emulator-runner@v2  
