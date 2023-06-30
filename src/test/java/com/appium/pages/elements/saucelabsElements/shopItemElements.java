@@ -6,14 +6,14 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class shopItemElements extends mobilePageObject {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"counter amount\"]/android.widget.TextView")
-    public MobileElement counterAmount;
+    public static MobileElement counterAmount;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"cart badge\"]/android.widget.TextView")
-    public MobileElement shoppingCartBadge;
+    public static MobileElement shoppingCartBadge;
 
     @AndroidFindBy(xpath = "//android.widget.ScrollView[@content-desc=\"product screen\"]/android.view.ViewGroup")
-    public MobileElement currentItem;
+    public static MobileElement currentItem;
 
     @AndroidFindBy(accessibility = "Add To Cart button")
-    public MobileElement addToCartButton;
+    public static MobileElement addToCartButton;
 }

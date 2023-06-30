@@ -1,9 +1,6 @@
 package com.appium.stepsDefinitions.saucelabsStepsDefs;
 
-import com.appium.pages.saucelabsScreens.LogInScreen;
 import com.appium.pages.saucelabsScreens.shopItemScreen;
-import com.appium.scripts.commons;
-import com.appium.stepsDefinitions.mobilePageObject;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -18,14 +15,10 @@ import java.util.Map;
 
 public class shopScreenSteps {
 
-    @When("the user clicks burger button")
-    public static void clickBurger(){
-        // TODO Cambiar por a homeScreen
-        shopScreen.clickBurgerButton();
-    }
+
 
     @And("the user clicks about button")
-    public void theUserClicksAboutButton() {
+    public static void theUserClicksAboutButton() {
         shopScreen.clickAboutButton();
     }
 

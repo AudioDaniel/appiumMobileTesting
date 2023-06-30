@@ -21,6 +21,7 @@ public class mobilePageObject {
 
 
     // METODOS GENÉRICOS
+    // TODO PONER PROTECTED?
     protected mobilePageObject() {
         PageFactory.initElements(new AppiumFieldDecorator(getDriver()), this);
     }
@@ -107,8 +108,6 @@ public class mobilePageObject {
     public static void setText(MobileElement element, String text) {
         try {
             //wait.until(ExpectedConditions.elementToBeSelected())
-
-            // TODO EXPLICAR TEORIA SOBRE QUE YA HAY UN ELEMENTO EN LA PÁGINA
             element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(element));
             element.clear();
             element.sendKeys(text);

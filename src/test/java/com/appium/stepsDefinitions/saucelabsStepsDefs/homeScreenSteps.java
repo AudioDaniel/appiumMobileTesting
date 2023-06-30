@@ -1,11 +1,17 @@
 package com.appium.stepsDefinitions.saucelabsStepsDefs;
 
+import com.appium.pages.saucelabsScreens.shopScreen;
 import io.cucumber.java.en.And;
 import com.appium.pages.saucelabsScreens.homeScreen;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class homeScreenSteps {
+
+    @When("the user clicks burger button")
+    public void clickBurger() throws InterruptedException {
+        homeScreen.clickBurgerButton();
+    }
 
     @And("^the user clicks on the section (.*)$")
     public void theUserClicksTheSectionSection(String section) {
@@ -14,8 +20,6 @@ public class homeScreenSteps {
 
     @Then("the user swipes the screen")
     public void theUserSwipesTheScreen() throws InterruptedException {
-        // TODO QUITAR SLEEP
-        Thread.sleep(3000);
         homeScreen.swipeScreen();
     }
 

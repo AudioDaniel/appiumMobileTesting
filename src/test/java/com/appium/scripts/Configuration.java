@@ -2,7 +2,7 @@ package com.appium.scripts;
 
 import java.util.Properties;
 
-public class configuration {
+public class Configuration {
     ///////////////////////////////////////////////////////////////////////////////
     // FILES
     ///////////////////////////////////////////////////////////////////////////////
@@ -14,11 +14,11 @@ public class configuration {
     // PROPERTIES OBJECT
     ///////////////////////////////////////////////////////////////////////////////
     public static final Properties KEY_PROPERTIES_FILE(String appName) {
-        return commons.getProperties(
+        return Commons.getProperties(
                 String.format(KEY_PROPERTIES_FILE_PATH, appName));
     }
     public static final Properties USER_INFO_PROPERTIES_FILE(String appName) {
-        return commons.getProperties(
+        return Commons.getProperties(
                 String.format(USER_INFO_PROPERTIES_FILE_PATH, appName));
     }
 

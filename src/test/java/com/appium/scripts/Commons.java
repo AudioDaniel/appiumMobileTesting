@@ -6,15 +6,12 @@ import static java.time.Duration.ofMillis;
 
 
 import com.appium.pages.baseAppium;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -24,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -35,7 +33,7 @@ import io.appium.java_client.touch.offset.PointOption;
 
 
 
-public class commons extends baseAppium {
+public class Commons extends baseAppium {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //MOBILE ELEMENT METHODS
@@ -54,6 +52,7 @@ public class commons extends baseAppium {
                 } catch (Exception e) {
                     attempts++;
                     failed = true;
+                    System.out.println("++attempt");
                 }
             } while (attempts < 3 && failed);
             Assert.fail("Fail to find element: " + ID);
@@ -116,11 +115,27 @@ public class commons extends baseAppium {
     //CLICK
     public static void click(String ID) {
         try {
-            findElementByID(ID).click();
+            Objects.requireNonNull(findElementByID(ID)).click();
         } catch (Exception e) {
             Assert.fail("Fail to click on element: " + ID);
         }
     }
+
+    public static void click(MobileElement elemento){
+        int count = 0;
+        while (count < 10){
+            try {
+                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+                elemento.click();
+            } catch (Exception e) {
+                count++;
+                System.out.println(e.getMessage());
+            }
+        }
+        Assert.fail("Fail to click on element: " + elemento);
+
+    }
+
     // Long press
     public static void longPress(MobileElement element){
         TouchAction action = new TouchAction(driver);
@@ -143,8 +158,8 @@ public class commons extends baseAppium {
     //SET TEXT
     public static void setText(String ID, String text) {
         try {
-            findElementByID(ID).clear();
-            findElementByID(ID).sendKeys(text);
+            Objects.requireNonNull(findElementByID(ID)).clear();
+            Objects.requireNonNull(findElementByID(ID)).sendKeys(text);
         } catch (Exception e) {
             Assert.fail("Fail to set text on element:" + ID);
         }
@@ -153,7 +168,7 @@ public class commons extends baseAppium {
     //GET TEXT
     public static String getText(String ID) {
         try {
-            return findElementByID(ID).getAttribute("text");
+            return Objects.requireNonNull(findElementByID(ID)).getAttribute("text");
         } catch (Exception e) {
             Assert.fail("Fail to get text on element:" + ID);
             return null;
@@ -161,7 +176,7 @@ public class commons extends baseAppium {
     }
     //ELEMENTS TEXT ORDER
 
-    public boolean assertElementsInOrder(List<MobileElement> elements) {
+    public static boolean assertElementsInOrder(List<MobileElement> elements) {
         int size = elements.size();
         for (int i = 0; i < size - 1; i++) {
             String currentText = elements.get(i).getText();
@@ -221,7 +236,7 @@ public class commons extends baseAppium {
 
     // SWIPE
     //Horizontal Swipe by percentages
-    public void horizontalSwipeByPercentage(double startPercentage, double endPercentage, double anchorPercentage) {
+    public static void horizontalSwipeByPercentage(double startPercentage, double endPercentage, double anchorPercentage) {
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.height * anchorPercentage);
@@ -233,7 +248,7 @@ public class commons extends baseAppium {
                 .moveTo(point(endPoint, anchor))
                 .release().perform();
     }
-    public void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
+    public static void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         Dimension size = driver.manage().window().getSize();
         int anchor = (int) (size.width * anchorPercentage);
@@ -248,7 +263,7 @@ public class commons extends baseAppium {
 
 
     // ZOOM
-    public void zoomOnElement(MobileElement element) throws InterruptedException {
+    public static void zoomOnElement(MobileElement element) throws InterruptedException {
         WebElement newElement = (WebElement) element;
 
         int x1 = element.getLocation().getX();
@@ -277,7 +292,7 @@ public class commons extends baseAppium {
     }
 
     // SCROLL VERTICAL
-    public void scrollToXpath(String xpath) {
+    public static void scrollToXpath(String xpath) {
         WebElement element = null;
         boolean elementFound = false;
         int count = 0;

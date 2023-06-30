@@ -2,7 +2,7 @@ package com.appium.pages.saucelabsScreens;
 
 import com.appium.pages.elements.saucelabsElements.AboutElements;
 import com.appium.pages.elements.saucelabsElements.CheckoutElements;
-import com.appium.scripts.commons;
+import com.appium.scripts.Commons;
 
 public class CheckoutScreen extends AboutElements {
     public static AboutElements aboutElements = new AboutElements();
@@ -39,7 +39,7 @@ public class CheckoutScreen extends AboutElements {
     }
 
     public static void enterCredentialsXpath(String field, String text) {
-        setText(commons.findElementByXpath(String.format(checkoutElements.genericFieldXpath,field)),text);
+        setText(Commons.findElementByXpath(String.format(checkoutElements.genericFieldXpath,field)),text);
 
     }
 }

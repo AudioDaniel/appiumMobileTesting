@@ -10,34 +10,34 @@ public class shopElements extends mobilePageObject {
 
 
 
-    public String xpathAllItems = "(//android.view.ViewGroup[@content-desc=\"store item\"])";
+    public static String xpathAllItems = "(//android.view.ViewGroup[@content-desc=\"store item\"])";
 
-    public String xpathItemByText = "(//android.widget.TextView[@text=\"%s\"])[1]";
+    public static String xpathItemByText = "(//android.widget.TextView[@text=\"%s\"])[1]";
 
-    public String xpathItemPrice = "(//android.widget.TextView[@content-desc=\"store item price\"])";
+    public static String xpathItemPrice = "(//android.widget.TextView[@content-desc=\"store item price\"])";
 
-    public String xpathItemName = "(//android.widget.TextView[@content-desc=\"store item text\"])";
+    public static String xpathItemName = "(//android.widget.TextView[@content-desc=\"store item text\"])";
 
 
     //SHOP ELEMENTS
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc='store item'])[1]/android.view.ViewGroup[1]/android.widget.ImageView")
-    public MobileElement saucelabsBackpack;
+    public static MobileElement saucelabsBackpack;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"counter plus button\"]")
-    public MobileElement plusButton;
+    public static MobileElement plusButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Proceed To Checkout button\"]")
-    public MobileElement proceedToCheckoutButton;
+    public static MobileElement proceedToCheckoutButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"sort button\"]")
-    public MobileElement sortButton;
+    public static MobileElement sortButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"nameAsc\"]/android.widget.TextView")
-    public MobileElement sortNameAsc;
+    public static MobileElement sortNameAsc;
     @AndroidFindBy(id = "nameDesc")
     public MobileElement sortNameDesc;
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"priceAsc\"]/android.widget.TextView[2]")
-    public MobileElement sortPriceAsc;
+    public static MobileElement sortPriceAsc;
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"priceDesc\"]/android.widget.TextView[2]")
     public MobileElement sortPriceDesc;
 

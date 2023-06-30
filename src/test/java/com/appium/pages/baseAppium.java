@@ -14,15 +14,16 @@ import java.net.URL;
 public class baseAppium {
 
 
-
+    private static final String DEVICE_TYPE = System.getProperty("deviceType","emulator");
+    private static final String PLATFORM = System.getProperty("platform","android");
     public static AppiumDriver driver;
     public static WebDriverWait wait;
 
     public void init(String propertieFile) throws MalformedURLException {
-        switch (System.getProperty("deviceType")){
+        switch (DEVICE_TYPE){
             case "emulator":
                 System.out.println("----- Emulator device type selected -----");
-                switch (System.getProperty("platform")){
+                switch (PLATFORM){
                     case "android":
                         System.out.println("----- Android platform selected -----");
                         androidEmulator(propertieFile);
@@ -52,6 +53,7 @@ public class baseAppium {
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, loadproperty.loadProperties(propertiesFile).getProperty("androidDeviceName"));
         capabilities.setCapability(MobileCapabilityType.FULL_RESET, true);
         capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
+        capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT,3000);
 
         capabilities.setCapability("disableWindowAnimation", true);
 
@@ -68,6 +70,8 @@ public class baseAppium {
         driver = new AndroidDriver(url, capabilities);
         wait = new WebDriverWait(driver,3);
         System.out.println("Application stated....");
+        System.out.println(driver.getContext());
+        System.out.println(driver.location());
         System.out.println("Driver(BaseAppium): " + driver);
     }
 
