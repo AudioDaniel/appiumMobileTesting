@@ -1,17 +1,14 @@
 package com.appium.pages.saucelabsScreens;
 
-import com.appium.pages.elements.saucelabsElements.homeElements;
+import com.appium.pages.elements.saucelabsElements.HomeElements;
 import com.appium.scripts.Commons;
-import io.appium.java_client.MobileElement;
 
-import java.util.Objects;
+public class homeScreen extends HomeElements {
 
-public class homeScreen extends homeElements {
-
-    //public static homeElements homeElements = new homeElements();
+    public static HomeElements homeElements = new HomeElements();
     public static void clickOnSection(String section){
-        String xpath = String.format(homeElements.genericSectionXpath,section.toLowerCase());
-        Objects.requireNonNull(findElementByXpath(xpath)).click();
+        String xpath = String.format(HomeElements.genericSectionXpath,section.toLowerCase());
+        (findElementByXpath(xpath)).click();
     }
 
     public static void swipeScreen() {
@@ -20,7 +17,7 @@ public class homeScreen extends homeElements {
 
     public static void pinchscreen() {
         try{
-            Commons.zoomOnElement(homeElements.drawingBoard);}
+            Commons.zoomOnElement(HomeElements.drawingBoard);}
         catch (InterruptedException e){
             System.out.println(e.getMessage());
         }
@@ -28,18 +25,19 @@ public class homeScreen extends homeElements {
     }
 
     public static void scrollToLinkedin() {
-        Commons.scrollToXpath(homeElements.linkedinIconXpath);
+        Commons.scrollToXpath(HomeElements.linkedinIconXpath);
     }
 
     public static void clickLinkedin() {
-        click(homeElements.linkedinIcon);
+        click(HomeElements.linkedinIcon);
     }
 
     public static void scrollToIphone7() {
-        Commons.scrollToXpath(homeElements.apiCallsIphone7Xpath);
+        Commons.scrollToXpath(HomeElements.apiCallsIphone7Xpath);
     }
 
     public static void clickBurgerButton(){
-        Commons.click(homeElements.burgerButton);
+        // TODO FUNCIONA CUANDO INSTANCIAS LA CLASE PERO NO CUANDO LA LLAMAS
+        homeElements.burgerButton.click();
     }
 }

@@ -122,19 +122,13 @@ public class Commons extends baseAppium {
     }
 
     public static void click(MobileElement elemento){
-        int count = 0;
-        while (count < 10){
             try {
-                driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
                 elemento.click();
-            } catch (Exception e) {
-                count++;
-                System.out.println(e.getMessage());
+            } catch (NoSuchElementException e) {
+                System.out.println(e);
+                Assert.fail("Fail to click on element: " + elemento);
             }
         }
-        Assert.fail("Fail to click on element: " + elemento);
-
-    }
 
     // Long press
     public static void longPress(MobileElement element){

@@ -1,27 +1,27 @@
 package com.appium.pages.saucelabsScreens;
 
-import com.appium.pages.elements.saucelabsElements.shopElements;
-import com.appium.pages.elements.saucelabsElements.shopItemElements;
+import com.appium.pages.elements.saucelabsElements.ShopElements;
+import com.appium.pages.elements.saucelabsElements.ShopItemElements;
 import com.appium.scripts.Commons;
 import com.appium.stepsDefinitions.mobilePageObject;
-public class shopItemScreen extends shopElements {
+public class shopItemScreen extends ShopElements {
 
     public static int getCounterNumber() {
 
-    return Integer.parseInt(mobilePageObject.getTextElement(shopItemElements.counterAmount));
+    return Integer.parseInt(mobilePageObject.getTextElement(ShopItemElements.counterAmount));
     }
 
     public static void clickShoppingCart() {
-        click(shopItemElements.shoppingCartBadge);
+        click(ShopItemElements.shoppingCartBadge);
     }
 
     public static void clickAddToCart() {
-        click(shopItemElements.addToCartButton);
+        click(ShopItemElements.addToCartButton);
     }
 
     public static void zoomItem(String item) {
         try{
-        Commons.zoomOnElement(shopItemElements.currentItem);}
+        Commons.zoomOnElement(ShopItemElements.currentItem);}
         catch (InterruptedException e){
             System.out.println(e);
         }

@@ -4,7 +4,7 @@ import com.appium.stepsDefinitions.mobilePageObject;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class shopElements extends mobilePageObject {
+public class ShopElements extends mobilePageObject {
 
     // GENERICOS TODO MOVER A UTILS
 

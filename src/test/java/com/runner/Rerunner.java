@@ -1,16 +1,14 @@
 package com.runner;
 
-import com.appium.pages.baseAppium;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = {
-                "src/test/resources/features"
+                "@test-reports/rerun/rerun.txt"
         },
         //tags = "@clockApp",
         glue = {
@@ -20,13 +18,13 @@ import org.junit.runner.RunWith;
                 "com/hooks"
         },
         plugin = {
-                "json:test-reports/cucumber-report/cucumber.json",
-                "html:test-reports/cucumber-report/cucumber.html",
-                "rerun:test-reports/rerun/rerun.txt"},
+                "json:test-reports/cucumber-report/cucumber-rerun.json",
+                "html:test-reports/cucumber-report/cucumber-rerun.html"
+                },
         monochrome = true,
         stepNotifications = true
 )
 
-public class RunCukeTest {
+public class Rerunner {
 
 }

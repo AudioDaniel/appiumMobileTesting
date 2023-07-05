@@ -4,7 +4,7 @@ import com.appium.stepsDefinitions.mobilePageObject;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
-public class homeElements extends mobilePageObject {
+public class HomeElements extends mobilePageObject {
 
     // String TODO Mover a UTILS
     public static String genericSectionXpath = "//android.view.ViewGroup[@content-desc=\"menu item %s\"]";
