@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import com.appium.pages.saucelabsScreens.homeScreen;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import com.utils.JsonLoader;
 public class homeScreenSteps {
 
     @When("the user clicks burger button")
@@ -41,5 +41,11 @@ public class homeScreenSteps {
     @Then("the user scroll to Iphone{int}")
     public void theUserScrollToIphone(int arg0) {
         homeScreen.scrollToIphone7();
+    }
+
+    @When("printing text {string}")
+    public void printingTextJsontext(String jsontext) {
+        String message = JsonLoader.getStringValue("MESSAGES", "CURRENT_VERSION");
+        System.out.println(message);
     }
 }

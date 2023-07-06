@@ -5,6 +5,14 @@ Feature: Saucelabs testing
     Given the user enter to application 'Saucelabs'
 
 
+  @JSON
+  Scenario Outline: JSON Testing
+    When printing text <jsontext>
+
+    Examples:
+      | jsontext                          |
+      | "CURRENT_VERSION" |
+
   @Xpath
   Scenario: XPATH TEST
     When I click x item
