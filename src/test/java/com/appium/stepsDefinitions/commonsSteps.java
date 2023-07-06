@@ -14,6 +14,7 @@ public class commonsSteps extends baseAppium {
     @Given("^the user enter to application '(.*)'$")
     public void openAplication(String propertiesFile) throws MalformedURLException {
         try {
+            // ----
 
             keyProperties = Configuration.KEY_PROPERTIES_FILE(propertiesFile);
             if (getDriver() == null){

@@ -1,6 +1,7 @@
 package com.appium.stepsDefinitions;
 
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.PerformsTouchActions;
+import org.openqa.selenium.WebElement;
 import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.touch.LongPressOptions;
@@ -26,7 +27,7 @@ public class mobilePageObject {
         PageFactory.initElements(new AppiumFieldDecorator(getDriver()), this);
     }
 
-    public static MobileElement findElementByXpath(String xpath) {
+    public static WebElement findElementByXpath(String xpath) {
 
         try {
 
@@ -38,7 +39,7 @@ public class mobilePageObject {
 
                 try {
 
-                    MobileElement element = (MobileElement) driver.findElement(By.xpath(xpath));
+                    WebElement element = (WebElement) driver.findElement(By.xpath(xpath));
 
                     failed = false;
 
@@ -68,7 +69,7 @@ public class mobilePageObject {
 
     }
 
-    public static MobileElement findElement(MobileElement element) {
+    public static WebElement findElement(WebElement element) {
         try {
             int attempts = 0;
             boolean failed;
@@ -91,7 +92,7 @@ public class mobilePageObject {
         }
     }
 
-    public static void click(MobileElement element) {
+    public static void click(WebElement element) {
         try {
             //element.click();
             findElement(element).click();
@@ -100,15 +101,15 @@ public class mobilePageObject {
         }
     }
 
-    public void longPress(MobileElement element, int timePressed) {
-        AndroidTouchAction touch = new AndroidTouchAction(getDriver());
+    public void longPress(WebElement element, int timePressed) {
+        AndroidTouchAction touch = new AndroidTouchAction((PerformsTouchActions) getDriver());
         touch.longPress(LongPressOptions.longPressOptions().withElement(ElementOption.element(element)).withDuration(Duration.ofSeconds(timePressed))).release().perform();
     }
 
-    public static void setText(MobileElement element, String text) {
+    public static void setText(WebElement element, String text) {
         try {
             //wait.until(ExpectedConditions.elementToBeSelected())
-            element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(element));
+            element = (WebElement) wait.until(ExpectedConditions.elementToBeClickable(element));
             element.clear();
             element.sendKeys(text);
             //findElement(element).clear();
@@ -118,7 +119,7 @@ public class mobilePageObject {
         }
     }
 
-    public static String getTextElement(MobileElement element) {
+    public static String getTextElement(WebElement element) {
         try {
             return findElement(element).getText();
             // return element.getText();
@@ -128,7 +129,7 @@ public class mobilePageObject {
         }
     }
 
-    public static boolean isPresent(MobileElement element) {
+    public static boolean isPresent(WebElement element) {
         try {
             boolean presence = element.isDisplayed();
             return presence;
@@ -138,7 +139,7 @@ public class mobilePageObject {
         }
     }
 
-    public static Boolean verifyElementHasText(MobileElement element, String text) {
+    public static Boolean verifyElementHasText(WebElement element, String text) {
         return getTextElement(element).equals(text);
     }
 }

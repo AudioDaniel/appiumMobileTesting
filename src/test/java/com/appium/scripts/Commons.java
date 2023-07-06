@@ -6,7 +6,8 @@ import static java.time.Duration.ofMillis;
 
 
 import com.appium.pages.baseAppium;
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.PerformsTouchActions;
+import org.openqa.selenium.WebElement;
 import io.appium.java_client.MultiTouchAction;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -65,14 +66,14 @@ public class Commons extends baseAppium {
 
     // TODO BORRAR EL DE mobilePage!!!!!!!!!!!!!!!!!!!!!
 // FIND ELEMENT ----------------------------
-    public static MobileElement findElementByXpath(String xpath) {
+    public static WebElement findElementByXpath(String xpath) {
         try {
             int attempts = 0;
             boolean failed;
             do {
                 try {
-                    //MobileElement element = (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-                    MobileElement element = (MobileElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+                    //WebElement element = (WebElement) wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+                    WebElement element = (WebElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
                     failed = false;
                     return element;
                 } catch (Exception e) {
@@ -89,13 +90,13 @@ public class Commons extends baseAppium {
         }
     }
 
-    public static List<MobileElement> findElementsByXpath(String xpath) {
+    public static List<WebElement> findElementsByXpath(String xpath) {
         try {
             int attempts = 0;
             boolean failed;
             do {
                 try {
-                    List<MobileElement> elements = (List<MobileElement>) driver.findElements(By.xpath(xpath));
+                    List<WebElement> elements = (List<WebElement>) driver.findElements(By.xpath(xpath));
                     failed = false;
                     return elements;
                 } catch (Exception e) {
@@ -121,7 +122,7 @@ public class Commons extends baseAppium {
         }
     }
 
-    public static void click(MobileElement elemento){
+    public static void click(WebElement elemento){
             try {
                 elemento.click();
             } catch (NoSuchElementException e) {
@@ -131,19 +132,19 @@ public class Commons extends baseAppium {
         }
 
     // Long press
-    public static void longPress(MobileElement element){
-        TouchAction action = new TouchAction(driver);
+    public static void longPress(WebElement element){
+        TouchAction action = new TouchAction((PerformsTouchActions) driver);
         Point location = element.getLocation();
-        new TouchAction(driver)
+        new TouchAction((PerformsTouchActions) driver)
                 .press(PointOption.point(location.getX(),
                         location.getY()))
                 .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3))).release().perform();
     }
 
-    public static void doubleTap(MobileElement element){
+    public static void doubleTap(WebElement element){
         int x = element.getLocation().getX();
         int y = element.getLocation().getY();
-        TouchAction action = new TouchAction(driver);
+        TouchAction action = new TouchAction((PerformsTouchActions) driver);
 
         action.tap(PointOption.point(x, y)).perform();
         action.tap(PointOption.point(x, y)).perform();
@@ -170,7 +171,7 @@ public class Commons extends baseAppium {
     }
     //ELEMENTS TEXT ORDER
 
-    public static boolean assertElementsInOrder(List<MobileElement> elements) {
+    public static boolean assertElementsInOrder(List<WebElement> elements) {
         int size = elements.size();
         for (int i = 0; i < size - 1; i++) {
             String currentText = elements.get(i).getText();
@@ -184,7 +185,7 @@ public class Commons extends baseAppium {
     }
 
     //ELEMENTS PRICE ORDER
-    public static boolean isOrderedAscPrice(List<MobileElement> prices) {
+    public static boolean isOrderedAscPrice(List<WebElement> prices) {
         if (prices.isEmpty()) {
             return true; // Empty list is considered ordered
         }
@@ -236,7 +237,7 @@ public class Commons extends baseAppium {
         int anchor = (int) (size.height * anchorPercentage);
         int startPoint = (int) (size.width * startPercentage);
         int endPoint = (int) (size.width * endPercentage);
-        new TouchAction(driver)
+        new TouchAction((PerformsTouchActions) driver)
                 .press(point(startPoint, anchor))
                 .waitAction(waitOptions(ofMillis(1000)))
                 .moveTo(point(endPoint, anchor))
@@ -248,7 +249,7 @@ public class Commons extends baseAppium {
         int anchor = (int) (size.width * anchorPercentage);
         int startPoint = (int) (size.height * startPercentage);
         int endPoint = (int) (size.height * endPercentage);
-        new TouchAction(driver)
+        new TouchAction((PerformsTouchActions) driver)
                 .press(point(anchor, startPoint))
                 .waitAction(waitOptions(ofMillis(1000)))
                 .moveTo(point(anchor, endPoint))
@@ -257,7 +258,7 @@ public class Commons extends baseAppium {
 
 
     // ZOOM
-    public static void zoomOnElement(MobileElement element) throws InterruptedException {
+    public static void zoomOnElement(WebElement element) throws InterruptedException {
         WebElement newElement = (WebElement) element;
 
         int x1 = element.getLocation().getX();
@@ -267,16 +268,16 @@ public class Commons extends baseAppium {
         final int y = newElement.getLocation().getY() + newElement.getSize().getHeight() / 2;
 
         System.out.println("Now zooming");
-        TouchAction finger1 = new TouchAction(driver);
+        TouchAction finger1 = new TouchAction((PerformsTouchActions) driver);
         finger1.press(PointOption.point(x, y - 10)).moveTo(PointOption.point(x, y - 100)).release().perform();
 
-        TouchAction finger2 = new TouchAction(driver);
+        TouchAction finger2 = new TouchAction((PerformsTouchActions) driver);
         finger2.press(PointOption.point(x, y + 10)).moveTo(PointOption.point(x, y + 100)).release().perform();
 
         finger1.longPress(PointOption.point(x1, y1)).moveTo(PointOption.point(x1 + 50, y1 + 50));
         finger2.longPress(PointOption.point(x1, y1)).moveTo(PointOption.point(x1 - 50, y1 - 50));
 
-        MultiTouchAction myAction = new MultiTouchAction(driver);
+        MultiTouchAction myAction = new MultiTouchAction((PerformsTouchActions) driver);
 
         myAction.add(finger1).add(finger2);
         myAction.perform();

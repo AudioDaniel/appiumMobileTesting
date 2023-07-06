@@ -3,6 +3,7 @@ package com.appium.pages;
 import com.utils.PropertyLoader;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.Properties;
 
 public class baseAppium {
 
@@ -55,6 +58,7 @@ public class baseAppium {
         capabilities.setCapability(MobileCapabilityType.NO_RESET, false);
         capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT,3000);
 
+
         capabilities.setCapability("disableWindowAnimation", true);
 
 
@@ -67,11 +71,10 @@ public class baseAppium {
         //Init driver
         URL url = new URL("http://localhost:4723/wd/hub");
 
-        driver = new AndroidDriver(url, capabilities);
-        wait = new WebDriverWait(driver,3);
+        driver = new AppiumDriver(url, capabilities);
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait = new WebDriverWait(driver, 3);
         System.out.println("Application stated....");
-        System.out.println(driver.getContext());
-        System.out.println(driver.location());
         System.out.println("Driver(BaseAppium): " + driver);
     }
 
@@ -80,7 +83,23 @@ public class baseAppium {
     }
 
     public void resetApp() {
+        // TODO  resetApp() está deprecated, pero por lo que veo no nos está haciendo falta usarlo
+        // para que la aplicación se resetee, creo que es por que le estamos pasando las capabilities de Reset
         driver.resetApp();
+
+       /* Properties keyProperties = null;
+        try {
+            // ----
+            // QUITAR HARDCODEO DE PRUEBA
+            String propertiesFile = "Saucelabs";
+            driver.close();
+            Thread.sleep(5000);
+            keyProperties = Configuration.KEY_PROPERTIES_FILE(propertiesFile);
+            init(propertiesFile);
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            System.out.println("Error connecting to Appium Service. Error: " + e.getMessage());
+        }*/
     }
 
     public void tearDown() {

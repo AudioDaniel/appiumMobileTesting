@@ -1,8 +1,9 @@
 package com.appium.pages.elements.saucelabsElements;
 
 import com.appium.stepsDefinitions.mobilePageObject;
-import io.appium.java_client.MobileElement;
+import org.openqa.selenium.WebElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.WebElement;
 
 public class ShopElements extends mobilePageObject {
 
@@ -21,24 +22,24 @@ public class ShopElements extends mobilePageObject {
 
     //SHOP ELEMENTS
     @AndroidFindBy(xpath = "(//android.view.ViewGroup[@content-desc='store item'])[1]/android.view.ViewGroup[1]/android.widget.ImageView")
-    public static MobileElement saucelabsBackpack;
+    public static WebElement saucelabsBackpack;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"counter plus button\"]")
-    public static MobileElement plusButton;
+    public static WebElement plusButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Proceed To Checkout button\"]")
-    public static MobileElement proceedToCheckoutButton;
+    public static WebElement proceedToCheckoutButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"sort button\"]")
-    public static MobileElement sortButton;
+    public static WebElement sortButton;
 
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"nameAsc\"]/android.widget.TextView")
-    public static MobileElement sortNameAsc;
+    public static WebElement sortNameAsc;
     @AndroidFindBy(id = "nameDesc")
-    public MobileElement sortNameDesc;
+    public WebElement sortNameDesc;
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"priceAsc\"]/android.widget.TextView[2]")
-    public static MobileElement sortPriceAsc;
+    public static WebElement sortPriceAsc;
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc=\"priceDesc\"]/android.widget.TextView[2]")
-    public MobileElement sortPriceDesc;
+    public WebElement sortPriceDesc;
 
 }

@@ -3,7 +3,8 @@ package com.appium.pages.saucelabsScreens;
 import com.appium.pages.elements.saucelabsElements.ShopElements;
 import com.appium.pages.elements.saucelabsElements.HomeElements;
 import com.appium.scripts.Commons;
-import io.appium.java_client.MobileElement;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.Objects;
@@ -48,7 +49,7 @@ public class shopScreen {
 
     public static boolean assertOrderedAscPrices() {
         Commons.scrollToXpath(ShopElements.xpathItemPrice + "[6]");
-        List<MobileElement> prices = Commons.findElementsByXpath(ShopElements.xpathItemPrice);
+        List<WebElement> prices = Commons.findElementsByXpath(ShopElements.xpathItemPrice);
         assert prices != null;
         System.out.println(prices.size());
         return Commons.isOrderedAscPrice(prices);
@@ -66,7 +67,7 @@ public class shopScreen {
 
     public static boolean assertOrderedAscNames() {
         Commons.scrollToXpath(ShopElements.xpathItemName + "[6]");
-        List<MobileElement> names = Commons.findElementsByXpath(ShopElements.xpathItemName);
+        List<WebElement> names = Commons.findElementsByXpath(ShopElements.xpathItemName);
         assert names != null;
         return Commons.assertElementsInOrder(names);
 

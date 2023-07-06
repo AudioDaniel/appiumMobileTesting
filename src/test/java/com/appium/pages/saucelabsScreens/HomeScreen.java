@@ -2,13 +2,12 @@ package com.appium.pages.saucelabsScreens;
 
 import com.appium.pages.elements.saucelabsElements.HomeElements;
 import com.appium.scripts.Commons;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+public class HomeScreen extends HomeElements{
 
-public class homeScreen extends HomeElements {
-
-    public static HomeElements homeElements = new HomeElements();
     public static void clickOnSection(String section){
         String xpath = String.format(HomeElements.genericSectionXpath,section.toLowerCase());
-        (findElementByXpath(xpath)).click();
+        (Commons.findElementByXpath(xpath)).click();
     }
 
     public static void swipeScreen() {
@@ -29,7 +28,7 @@ public class homeScreen extends HomeElements {
     }
 
     public static void clickLinkedin() {
-        click(HomeElements.linkedinIcon);
+        Commons.click(HomeElements.linkedinIcon);
     }
 
     public static void scrollToIphone7() {
@@ -38,6 +37,6 @@ public class homeScreen extends HomeElements {
 
     public static void clickBurgerButton(){
         // TODO FUNCIONA CUANDO INSTANCIAS LA CLASE PERO NO CUANDO LA LLAMAS
-        homeElements.burgerButton.click();
+        HomeElements.burgerButton.click();
     }
 }
