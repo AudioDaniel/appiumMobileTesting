@@ -40,18 +40,47 @@ public class JsonLoader {
             JsonParser parser = new JsonParser();
             JsonElement jsonElement = parser.parse(new FileReader(String.format(FILEPATH, LANG)));
             return jsonElement.getAsJsonObject();
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String extractNestedValue(String... keys) {
+
+        FileReader json;
+        try {
+            json = new FileReader(String.format(FILEPATH, LANG));
+            Gson gson = new Gson();
+            JsonElement element = gson.fromJson(json, JsonElement.class);
+
+            JsonObject jsonObject = element.getAsJsonObject();
+            for (String key : keys) {
+                if (jsonObject.has(key)) {
+                    JsonElement nestedElement = jsonObject.get(key);
+                    if (nestedElement.isJsonObject()) {
+                        jsonObject = nestedElement.getAsJsonObject();
+                    } else {
+                        return nestedElement.getAsString();
+                    }
+                } else {
+                    return null;
+                }
+            }
+        }
+        catch(IOException e){
+                e.printStackTrace();
+            }
+        return null;
     }
 
     public static String getStringValue(String collection, String key) {
         return readJsonFile().getAsJsonObject(collection).get(key).getAsString();
     }
+
     public static Boolean getBooleanValue(String collection, String key) {
         return readJsonFile().getAsJsonObject(collection).get(key).getAsBoolean();
     }
+
     public static int getIntValue(String collection, String key) {
         return readJsonFile().getAsJsonObject(collection).get(key).getAsInt();
     }

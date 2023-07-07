@@ -45,7 +45,7 @@ public class homeScreenSteps {
 
     @When("printing text {string}")
     public void printingTextJsontext(String jsontext) {
-        String message = JsonLoader.getStringValue("MESSAGES", "CURRENT_VERSION");
+        String message = JsonLoader.extractNestedValue("USERS","MESSAGES", "CURRENT_VERSION");
         System.out.println(message);
     }
 }
