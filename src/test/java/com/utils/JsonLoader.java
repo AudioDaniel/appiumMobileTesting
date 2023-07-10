@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class JsonLoader {
     // TODO preguntar donde se metia "@"
@@ -46,30 +48,33 @@ public class JsonLoader {
     }
 
     public static String extractNestedValue(String... keys) {
-
-        FileReader json;
+        JsonObject json = readJsonFile();
         try {
-            json = new FileReader(String.format(FILEPATH, LANG));
-            Gson gson = new Gson();
-            JsonElement element = gson.fromJson(json, JsonElement.class);
-
-            JsonObject jsonObject = element.getAsJsonObject();
+            String element = null;
             for (String key : keys) {
-                if (jsonObject.has(key)) {
-                    JsonElement nestedElement = jsonObject.get(key);
+                if (json.has(key)) {
+                    JsonElement nestedElement = json.get(key);
                     if (nestedElement.isJsonObject()) {
-                        jsonObject = nestedElement.getAsJsonObject();
+                        json = nestedElement.getAsJsonObject();
                     } else {
-                        return nestedElement.getAsString();
+                        element = nestedElement.getAsString();
+                        System.out.println(element);
+                        if (Objects.equals(element, null)) {
+                            throw new Exception("String" + key + "not found in JSON");
+                        }
+                        return element;
                     }
-                } else {
-                    return null;
+                }
+                else {
+                    throw new NoSuchElementException("String" + key + "not found in JSON");
                 }
             }
-        }
-        catch(IOException e){
-                e.printStackTrace();
+            if (element.equals("null")){
+                throw new NoSuchElementException();
             }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return null;
     }
 
